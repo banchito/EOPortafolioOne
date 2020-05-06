@@ -1,20 +1,21 @@
 //
-//  ViewController.swift
+//  FavoritesListVC.swift
 //  EOPortafolioOne
 //
-//  Created by Esteban Ordonez on 4/28/20.
+//  Created by Esteban Ordonez on 4/29/20.
 //  Copyright © 2020 Esteban Ordonez. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
+class FavoritesListVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        view.backgroundColor = .systemBlue
     }
+    
 
 
 }
-
