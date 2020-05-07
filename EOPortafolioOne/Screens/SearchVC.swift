@@ -8,15 +8,23 @@
 
 
 import UIKit
+import CoreLocation
 
+ 
 class SearchVC: UIViewController {
     
     let logoImageView           = UIImageView()
     let cityTextField           = BoltTextField()
     let gpsButton               = BoltButton(backgroundColor: .systemBackground, title: "")
     let callToActionButton      = BoltButton(backgroundColor: .systemIndigo, title: "Get Weather")
+    let locationManager         = CLLocationManager()
     
-    var weatherManager = NetworkManager()
+    var weatherManager          = NetworkManager()
+    var lon: CLLocationDegrees  = 0.0
+    var lat: CLLocationDegrees  = 0.0
+    
+    var isLocationReceived: Bool = false
+    
     
     var isCityNameEntered: Bool {
         return !cityTextField.text!.isEmpty
@@ -25,6 +33,12 @@ class SearchVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
+        
+        
         configureLogoImageView()
         configureCityTextField()
         configureGeoLocalizationButton()
@@ -46,12 +60,20 @@ class SearchVC: UIViewController {
         view.addGestureRecognizer(tap)
     }
     
+    @objc func pushToCityVC(){
+        if isLocationReceived == true{
+            let cityVC              = CityVC()
+            cityVC.lat              = lat
+            cityVC.lon              = lon
+            navigationController?.pushViewController(cityVC, animated: true)
+            
+        }
+    }
 
     @objc func pushCityVC() {
         guard isCityNameEntered else {
             presentBoltAlertOnMainThread(title: "Empty City", message: "Please enter a city to get its weather. ", buttonTitle: "Ok")
             return
-            
         }
         
         let cityVC              = CityVC()
@@ -77,6 +99,8 @@ class SearchVC: UIViewController {
     
     func configureGeoLocalizationButton(){
         view.addSubview(gpsButton)
+        gpsButton.addTarget(self, action: #selector(pushToCityVC), for: .touchUpInside)
+        
         gpsButton.setBackgroundImage(UIImage(systemName: "location.circle.fill"), for: .normal)
         gpsButton.tintColor = .systemIndigo
         
@@ -125,5 +149,20 @@ extension SearchVC: UITextFieldDelegate{
     
 }
 
+extension SearchVC: CLLocationManagerDelegate{
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+       
+        if let location = locations.last{
+            lon     = location.coordinate.longitude
+            lat     = location.coordinate.latitude
+            isLocationReceived = true
+            
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
+    }
+}
 
  
