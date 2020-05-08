@@ -24,6 +24,7 @@
 		96125D152460A4D80033C285 /* BoltAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96125D142460A4D80033C285 /* BoltAlertVC.swift */; };
 		96125D1E2461F6340033C285 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96125D1D2461F6340033C285 /* WeatherData.swift */; };
 		96125D20246224B60033C285 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96125D1F246224B60033C285 /* WeatherModel.swift */; };
+		965CC6292465B349002452AB /* BoltError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965CC6282465B349002452AB /* BoltError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		96125D142460A4D80033C285 /* BoltAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoltAlertVC.swift; sourceTree = "<group>"; };
 		96125D1D2461F6340033C285 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		96125D1F246224B60033C285 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		965CC6282465B349002452AB /* BoltError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoltError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				96125D04245B15580033C285 /* Constants.swift */,
+				965CC6282465B349002452AB /* BoltError.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 				96125D1E2461F6340033C285 /* WeatherData.swift in Sources */,
 				96125D03245A3A740033C285 /* FavoritesListVC.swift in Sources */,
 				96125D20246224B60033C285 /* WeatherModel.swift in Sources */,
+				965CC6292465B349002452AB /* BoltError.swift in Sources */,
 				96125D0F246066CC0033C285 /* NetworkManager.swift in Sources */,
 				96125D09245B66650033C285 /* BoltTextField.swift in Sources */,
 				96125D0D245CE1CD0033C285 /* CityVC.swift in Sources */,

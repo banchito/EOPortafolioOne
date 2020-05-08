@@ -10,7 +10,7 @@
 import UIKit
 import CoreLocation
 
- 
+
 class SearchVC: UIViewController {
     
     let logoImageView           = UIImageView()
@@ -24,7 +24,6 @@ class SearchVC: UIViewController {
     var lat: CLLocationDegrees  = 0.0
     
     var isLocationReceived: Bool = false
-    
     
     var isCityNameEntered: Bool {
         return !cityTextField.text!.isEmpty
@@ -47,11 +46,10 @@ class SearchVC: UIViewController {
         setupToolBar(on: cityTextField)
     }
     
-     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
-        
     }
     
     
@@ -60,16 +58,17 @@ class SearchVC: UIViewController {
         view.addGestureRecognizer(tap)
     }
     
+    
     @objc func pushToCityVC(){
         if isLocationReceived == true{
             let cityVC              = CityVC()
             cityVC.lat              = lat
             cityVC.lon              = lon
             navigationController?.pushViewController(cityVC, animated: true)
-            
         }
     }
-
+    
+    
     @objc func pushCityVC() {
         guard isCityNameEntered else {
             presentBoltAlertOnMainThread(title: "Empty City", message: "Please enter a city to get its weather. ", buttonTitle: "Ok")
@@ -93,7 +92,6 @@ class SearchVC: UIViewController {
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             logoImageView.heightAnchor.constraint(equalToConstant: 250),
             logoImageView.widthAnchor.constraint(equalToConstant: 250)
-        
         ])
     }
     
@@ -108,9 +106,10 @@ class SearchVC: UIViewController {
             gpsButton.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 48),
             gpsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
             gpsButton.trailingAnchor.constraint(equalTo: cityTextField.leadingAnchor, constant: -10),
-            gpsButton.heightAnchor.constraint(equalToConstant: 50)
+            gpsButton.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
+    
     
     func configureCityTextField(){
         view.addSubview(cityTextField)
@@ -120,7 +119,7 @@ class SearchVC: UIViewController {
             cityTextField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 48),
             cityTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 120),
             cityTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80),
-            cityTextField.heightAnchor.constraint(equalToConstant: 50)
+            cityTextField.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
     
@@ -134,10 +133,11 @@ class SearchVC: UIViewController {
             callToActionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
             callToActionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             callToActionButton.heightAnchor.constraint(equalToConstant: 50)
-        
+            
         ])
     }
 }
+
 
 extension SearchVC: UITextFieldDelegate{
     
@@ -149,20 +149,22 @@ extension SearchVC: UITextFieldDelegate{
     
 }
 
+
 extension SearchVC: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-       
+        
         if let location = locations.last{
-            lon     = location.coordinate.longitude
-            lat     = location.coordinate.latitude
+            lon         = location.coordinate.longitude
+            lat         = location.coordinate.latitude
             isLocationReceived = true
             
         }
     }
+    
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
     }
 }
 
- 
+

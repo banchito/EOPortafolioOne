@@ -23,18 +23,17 @@ class CityVC: UIViewController {
         navigationController?.isNavigationBarHidden             = false
         navigationController?.navigationBar.prefersLargeTitles  = true
         
-        NetworkManager.shared.getWeatherBylocation(latitude: lat, longitude: lon) { (weather, errorMessage) in
-            guard let weather = weather else {
-                self.presentBoltAlertOnMainThread(title: "Bad Stuff happened.", message: errorMessage!, buttonTitle: "Ok")
-                return
-            }
-            DispatchQueue.main.async {
-                self.title = weather.name
-            }
+        NetworkManager.shared.getWeatherBylocation(latitude: lat, longitude: lon) {result in
             
-            print(weather)
+            switch result {
+                
+            case .success(let weather):
+                DispatchQueue.main.async { self.title = weather.name}
+                
+            case .failure(let error):
+                self.presentBoltAlertOnMainThread(title: "Bad Stuff happened.", message: error.rawValue, buttonTitle: "Ok")
+            }
         }
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
