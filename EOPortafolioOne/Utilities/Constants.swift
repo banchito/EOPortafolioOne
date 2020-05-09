@@ -12,6 +12,7 @@ import UIKit
 enum Images{
     
     static let boltLogo = UIImage(named: "bolt-logo")
+    
 }
 
 

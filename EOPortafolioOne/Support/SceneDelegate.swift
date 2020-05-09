@@ -31,6 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         searchVC.title                  = "Search"
         searchVC.tabBarItem             = UITabBarItem(tabBarSystemItem: .search, tag: 0)
         
+        
         return UINavigationController(rootViewController: searchVC)
     }
     
@@ -49,11 +50,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UITabBar.appearance().tintColor = .systemIndigo
         tabBar.viewControllers          = [createSearchNC(), createFavoritesNC()]
         
+        
         return tabBar
     }
     
     func configureNavigationBar() {
         UINavigationBar.appearance().tintColor  = .systemIndigo
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -29,7 +29,7 @@ class BoltBodyLabel: UILabel {
   
   private func configure() {
       textColor                 = .secondaryLabel
-    font                      = UIFont.preferredFont(forTextStyle: .body)
+      font                      = UIFont.preferredFont(forTextStyle: .body)
       adjustsFontSizeToFitWidth = true
       minimumScaleFactor        = 0.7
       lineBreakMode             = .byWordWrapping
