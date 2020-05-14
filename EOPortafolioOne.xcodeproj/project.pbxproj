@@ -24,8 +24,12 @@
 		96125D152460A4D80033C285 /* BoltAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96125D142460A4D80033C285 /* BoltAlertVC.swift */; };
 		96125D1E2461F6340033C285 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96125D1D2461F6340033C285 /* WeatherData.swift */; };
 		96125D20246224B60033C285 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96125D1F246224B60033C285 /* WeatherModel.swift */; };
+		96292EA524687B0B006B6A74 /* BoltItemInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96292EA424687B0B006B6A74 /* BoltItemInfoView.swift */; };
+		96292EA7246B3493006B6A74 /* BoltItemInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96292EA6246B3493006B6A74 /* BoltItemInfoVC.swift */; };
+		96292EA9246C3599006B6A74 /* BoltMinMaxVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96292EA8246C3599006B6A74 /* BoltMinMaxVC.swift */; };
+		96464AE1246C8BDE000127FC /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96464AE0246C8BDE000127FC /* Date+Ext.swift */; };
 		965CC6292465B349002452AB /* BoltError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965CC6282465B349002452AB /* BoltError.swift */; };
-		965CC63024661E15002452AB /* BoltWeatherInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965CC62F24661E15002452AB /* BoltWeatherInfoVC.swift */; };
+		965CC63024661E15002452AB /* BoltWeatherInfoHeaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965CC62F24661E15002452AB /* BoltWeatherInfoHeaderVC.swift */; };
 		965CC63224662143002452AB /* BoltSecondaryTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965CC63124662143002452AB /* BoltSecondaryTitleLabel.swift */; };
 /* End PBXBuildFile section */
 
@@ -49,8 +53,12 @@
 		96125D142460A4D80033C285 /* BoltAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoltAlertVC.swift; sourceTree = "<group>"; };
 		96125D1D2461F6340033C285 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		96125D1F246224B60033C285 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		96292EA424687B0B006B6A74 /* BoltItemInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoltItemInfoView.swift; sourceTree = "<group>"; };
+		96292EA6246B3493006B6A74 /* BoltItemInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoltItemInfoVC.swift; sourceTree = "<group>"; };
+		96292EA8246C3599006B6A74 /* BoltMinMaxVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoltMinMaxVC.swift; sourceTree = "<group>"; };
+		96464AE0246C8BDE000127FC /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		965CC6282465B349002452AB /* BoltError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoltError.swift; sourceTree = "<group>"; };
-		965CC62F24661E15002452AB /* BoltWeatherInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoltWeatherInfoVC.swift; sourceTree = "<group>"; };
+		965CC62F24661E15002452AB /* BoltWeatherInfoHeaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoltWeatherInfoHeaderVC.swift; sourceTree = "<group>"; };
 		965CC63124662143002452AB /* BoltSecondaryTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoltSecondaryTitleLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +119,7 @@
 		96125D172461AC700033C285 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				96292EA324687AD9006B6A74 /* Views */,
 				965CC62E24661B4C002452AB /* View Controllers */,
 				965CC62D24661B21002452AB /* Labels */,
 				965CC62C24661B0D002452AB /* TextFields */,
@@ -123,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				96125D0A245CD4680033C285 /* UIViewController+Ext.swift */,
+				96464AE0246C8BDE000127FC /* Date+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -162,6 +172,23 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		96292EA324687AD9006B6A74 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				96292EA424687B0B006B6A74 /* BoltItemInfoView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		96292EAA246C3C42006B6A74 /* ItemInfoVCs */ = {
+			isa = PBXGroup;
+			children = (
+				96292EA6246B3493006B6A74 /* BoltItemInfoVC.swift */,
+				96292EA8246C3599006B6A74 /* BoltMinMaxVC.swift */,
+			);
+			path = ItemInfoVCs;
+			sourceTree = "<group>";
+		};
 		965CC62B24661AFB002452AB /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,8 +218,9 @@
 		965CC62E24661B4C002452AB /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				96292EAA246C3C42006B6A74 /* ItemInfoVCs */,
 				96125D142460A4D80033C285 /* BoltAlertVC.swift */,
-				965CC62F24661E15002452AB /* BoltWeatherInfoVC.swift */,
+				965CC62F24661E15002452AB /* BoltWeatherInfoHeaderVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -267,14 +295,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				965CC63024661E15002452AB /* BoltWeatherInfoVC.swift in Sources */,
+				965CC63024661E15002452AB /* BoltWeatherInfoHeaderVC.swift in Sources */,
 				96125D05245B15590033C285 /* Constants.swift in Sources */,
 				96125D132460A2C70033C285 /* BoltBodyLabel.swift in Sources */,
 				96125D1E2461F6340033C285 /* WeatherData.swift in Sources */,
+				96292EA7246B3493006B6A74 /* BoltItemInfoVC.swift in Sources */,
 				96125D03245A3A740033C285 /* FavoritesListVC.swift in Sources */,
 				96125D20246224B60033C285 /* WeatherModel.swift in Sources */,
 				965CC6292465B349002452AB /* BoltError.swift in Sources */,
 				96125D0F246066CC0033C285 /* NetworkManager.swift in Sources */,
+				96292EA524687B0B006B6A74 /* BoltItemInfoView.swift in Sources */,
 				96125D09245B66650033C285 /* BoltTextField.swift in Sources */,
 				96125D0D245CE1CD0033C285 /* CityVC.swift in Sources */,
 				96125D01245A39DA0033C285 /* SearchVC.swift in Sources */,
@@ -282,7 +312,9 @@
 				96125D07245B23D70033C285 /* BoltButton.swift in Sources */,
 				96125D1124609F970033C285 /* BoltTitleLabel.swift in Sources */,
 				96125D152460A4D80033C285 /* BoltAlertVC.swift in Sources */,
+				96464AE1246C8BDE000127FC /* Date+Ext.swift in Sources */,
 				965CC63224662143002452AB /* BoltSecondaryTitleLabel.swift in Sources */,
+				96292EA9246C3599006B6A74 /* BoltMinMaxVC.swift in Sources */,
 				96125D0B245CD4680033C285 /* UIViewController+Ext.swift in Sources */,
 				96125CEF245888840033C285 /* SceneDelegate.swift in Sources */,
 			);

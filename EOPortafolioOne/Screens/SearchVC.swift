@@ -74,10 +74,13 @@ class SearchVC: UIViewController {
             presentBoltAlertOnMainThread(title: "Empty City", message: "Please enter a city to get its weather. ", buttonTitle: "Ok")
             return
         }
+        cityTextField.resignFirstResponder()
         
         let cityVC              = CityVC()
-        cityVC.city             = cityTextField.text
-        cityVC.title            = cityTextField.text
+        if let cityNoSpace      = cityTextField.text{
+        cityVC.city = cityNoSpace.replacingOccurrences(of: " ", with: "+")
+        }
+        cityVC.title            = cityTextField.text?.capitalized
         navigationController?.pushViewController(cityVC, animated: true)
     }
     

@@ -8,12 +8,12 @@
 
 import UIKit
 
-class BoltWeatherInfoVC: UIViewController {
+class BoltWeatherInfoHeaderVC: UIViewController {
 
     let cityNameLabel        = BoltTitleLabel(textAlignment: .center, fontSize: 34)
     let weatherImageView     = UIImageView()
-    let temperatureLabel     = BoltSecondaryTitleLabel(fontSize: 20)
-    let feelsLikeLabel       = BoltBodyLabel(textAlignment: .center)
+    let temperatureLabel     = BoltTitleLabel(textAlignment: .center, fontSize: 34)
+    let feelsLikeLabel       = BoltSecondaryTitleLabel(fontSize: 20)
     
     
     var weather: WeatherModel!
@@ -23,9 +23,11 @@ class BoltWeatherInfoVC: UIViewController {
         self.weather = weather
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,8 +41,8 @@ class BoltWeatherInfoVC: UIViewController {
     func configureUIElements(){
         weatherImageView.image      = UIImage(systemName: weather.conditionName)
         weatherImageView.tintColor  = .secondaryLabel
-        temperatureLabel.text       = weather.temperatureString
-        feelsLikeLabel.text         = weather.feelsString
+        temperatureLabel.text       =  weather.description + " " + weather.temperatureString + "°"
+        feelsLikeLabel.text         = "Feels like \(weather.feelsString)°"
     }
     
     
@@ -52,26 +54,25 @@ class BoltWeatherInfoVC: UIViewController {
     
     
     func layoutUI(){
-        let padding: CGFloat            = 20
-        let textImagePadding: CGFloat   = 12
+        let padding: CGFloat            = 10
+        
         weatherImageView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            weatherImageView.topAnchor.constraint(equalTo: view.topAnchor, constant:padding),
-            weatherImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            weatherImageView.widthAnchor.constraint(equalToConstant: 120),
+            weatherImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: padding),
+            weatherImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            weatherImageView.widthAnchor.constraint(equalToConstant: 150),
             weatherImageView.heightAnchor.constraint(equalToConstant: 120),
             
-            temperatureLabel.topAnchor.constraint(equalTo: weatherImageView.bottomAnchor, constant: padding),
+            temperatureLabel.topAnchor.constraint(equalTo: weatherImageView.bottomAnchor, constant: -20),
             temperatureLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            temperatureLabel.widthAnchor.constraint(equalToConstant: 100),
+            temperatureLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             temperatureLabel.heightAnchor.constraint(equalToConstant: 100),
             
-            feelsLikeLabel.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: textImagePadding),
-            feelsLikeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: textImagePadding),
-            feelsLikeLabel.widthAnchor.constraint(equalToConstant: 80),
-            feelsLikeLabel.heightAnchor.constraint(equalToConstant: 80)
+            feelsLikeLabel.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: -60),
+            feelsLikeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            feelsLikeLabel.widthAnchor.constraint(equalToConstant: 100),
+            feelsLikeLabel.heightAnchor.constraint(equalToConstant: 100)
         ])
     }
-    
 }

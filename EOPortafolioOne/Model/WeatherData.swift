@@ -8,9 +8,11 @@
 
 import Foundation
 struct WeatherData: Codable {
-    let name    : String
-    let main    : Main
-    let weather : [Weather]
+    let name        : String
+    let timezone    : Date
+    let main        : Main
+    let sys         : Sys
+    let weather     : [Weather]
 }
 
 struct Main: Codable {
@@ -23,5 +25,11 @@ struct Main: Codable {
 struct Weather: Codable {
     let description : String
     let id          : Int
-    
 }
+
+struct Sys: Codable {
+    let sunrise     : Date
+    let sunset      : Date
+}
+
+

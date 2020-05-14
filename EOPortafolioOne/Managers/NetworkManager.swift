@@ -16,9 +16,9 @@ class NetworkManager {
     
     private let baseURL = "https://api.openweathermap.org/data/2.5/weather?&appid=0ac83c5b6ba194a4fdb81d25ef69dc27&units=metric"
     
-   
-    func getWeatherByCity(for city: String, completed: @escaping (Result<WeatherData, BoltError>) -> Void) {
-         
+    
+    func getWeatherByCity(for city: String, completed: @escaping (Result<WeatherModel, BoltError>) -> Void) {
+        
         let endPoint = "\(baseURL)&q=\(city)"
         
         guard let url = URL(string: endPoint) else {
@@ -43,9 +43,33 @@ class NetworkManager {
                 return
             }
             
-            do {
+            do{
                 let decoder = JSONDecoder()
-                let weather = try decoder.decode(WeatherData.self, from: data)
+                let decodedData = try decoder.decode(WeatherData.self, from: data)
+                
+                let id          = decodedData.weather[0].id
+                let description = decodedData.weather[0].description
+                let name        = decodedData.name
+                let temp        = decodedData.main.temp
+                let feels       = decodedData.main.feels_like
+                let min         = decodedData.main.temp_min
+                let max         = decodedData.main.temp_max
+                let sunrise     = decodedData.sys.sunrise
+                let sunset      = decodedData.sys.sunset
+                let timezone    = decodedData.timezone
+                
+                let weather = WeatherModel(
+                    conditionId     : id,
+                    description     : description,
+                    cityName        : name,
+                    temperature     : temp,
+                    feels           : feels,
+                    min             : min,
+                    max             : max,
+                    sunrise         : sunrise,
+                    sunset          : sunset,
+                    timezone        : timezone
+                )
                 completed(.success(weather))
             } catch {
                 completed(.failure(.invalidData))
@@ -57,7 +81,7 @@ class NetworkManager {
     
     func getWeatherBylocation(latitude: CLLocationDegrees,
                               longitude: CLLocationDegrees,
-                              completed: @escaping (Result<WeatherData, BoltError>) -> Void ){
+                              completed: @escaping (Result<WeatherModel, BoltError>) -> Void ){
         
         let endPoint = "\(baseURL)&lat=\(latitude)&lon=\(longitude)"
         
@@ -84,8 +108,34 @@ class NetworkManager {
             }
             
             do{
-                let decoder = JSONDecoder()
-                let weather = try decoder.decode(WeatherData.self, from: data)
+                let decoder                     = JSONDecoder()
+                let decodedData                 = try decoder.decode(WeatherData.self, from: data)
+                decoder.dateDecodingStrategy    = .secondsSince1970
+                
+                let id          = decodedData.weather[0].id
+                let description = decodedData.weather[0].description
+                let name        = decodedData.name
+                let temp        = decodedData.main.temp
+                let feels       = decodedData.main.feels_like
+                let min         = decodedData.main.temp_min
+                let max         = decodedData.main.temp_max
+                let sunrise     = decodedData.sys.sunrise
+                let sunset      = decodedData.sys.sunset
+                let timezone    = decodedData.timezone
+                
+                let weather = WeatherModel(
+                    conditionId     : id,
+                    description     : description,
+                    cityName        : name,
+                    temperature     : temp,
+                    feels           : feels,
+                    min             : min,
+                    max             : max,
+                    sunrise         : sunrise,
+                    sunset          : sunset,
+                    timezone        : timezone
+                    )
+                
                 completed(.success(weather))
             } catch {
                 completed(.failure(.invalidData))
@@ -95,4 +145,4 @@ class NetworkManager {
     }
     
 }
- 
+

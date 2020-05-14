@@ -12,8 +12,35 @@ import UIKit
 enum Images{
     
     static let boltLogo = UIImage(named: "bolt-logo")
-    
 }
+
+enum sfSymbols: String{
+    case cloudBolt          = "cloud.bolt"
+    case cloudDrizzle       = "cloud.drizzle"
+    case cloudHeavyrain     = "cloud.heavyrain"
+    case cloudSleet         = "cloud.sleet"
+    case cloudRain          = "cloud.rain"
+    case cloudSnow          = "cloud.snow"
+    case cloudFog           = "cloud.fog"
+    case sunMax             = "sun.max"
+    case cloudSun           = "cloud.sun"
+    case cloud              = "cloud"
+    case smoke              = "smoke"
+    
+    case min                = "thermometer"
+    case max                = "thermometer.sun"
+    case sunrise            = "sunrise"
+    case sunset             = "sunset"
+}
+
+
+
+
+
+
+
+
+
 
 
 
