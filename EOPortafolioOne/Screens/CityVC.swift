@@ -41,8 +41,10 @@ class CityVC: UIViewController {
             case .success(let weather):
                 DispatchQueue.main.async {
                     self.title = weather.cityName
+                    self.city  = weather.cityName.replacingOccurrences(of: " ", with: "+")
                     self.add(childVC: BoltWeatherInfoHeaderVC(weather: weather), to: self.headerView)
                     self.add(childVC: BoltMinMaxVC(weather: weather), to: self.itemViewOne)
+                    
                 }
                 print(weather)
             case .failure(let error):
@@ -53,14 +55,17 @@ class CityVC: UIViewController {
     
     
     func getWeatherWith(city: String) {
-
+        
         NetworkManager.shared.getWeatherByCity(for: city) { result in
             switch result {
                 
             case .success(let weather):
+                
                 DispatchQueue.main.async {
+                    self.city  = weather.cityName.replacingOccurrences(of: " ", with: "+")
                     self.add(childVC: BoltWeatherInfoHeaderVC(weather: weather), to: self.headerView)
                     self.add(childVC: BoltMinMaxVC(weather: weather), to: self.itemViewOne)
+                   
                 }
                 print(weather)
             case .failure(let error):
@@ -74,6 +79,9 @@ class CityVC: UIViewController {
         view.backgroundColor                                    = .systemBackground
         navigationController?.isNavigationBarHidden             = false
         navigationController?.navigationBar.prefersLargeTitles  = true
+        
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        navigationItem.rightBarButtonItem = addButton
     }
     
     
@@ -111,10 +119,42 @@ class CityVC: UIViewController {
     }
     
     
+    @objc func addButtonTapped() {
+        
+        NetworkManager.shared.getCityInfo(for: city) { [weak self] result in
+            
+            guard let self = self else { return }
+            
+            switch result {
+                
+            case .success(let city):
+                
+                let favorite = City(name: city.name, cityId: city.cityId)
+                
+                PersistanceManager.updateWith(favorite: favorite, actionType: .add) { [weak self] error in
+                    
+                    guard let self = self else { return }
+                    
+                    guard let error = error else {
+                        self.presentBoltAlertOnMainThread(title: "Success!", message: "You have succesfully favorited this city", buttonTitle: "Ok")
+                        return
+                    }
+                    self.presentBoltAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+                }
+               
+            case .failure(let error):
+                self.presentBoltAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+            }
+            
+        }
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
+    
+    
     
 }

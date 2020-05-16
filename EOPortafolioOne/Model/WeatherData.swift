@@ -9,6 +9,7 @@
 import Foundation
 struct WeatherData: Codable {
     let name        : String
+    let id          : Double
     let timezone    : Date
     let main        : Main
     let sys         : Sys

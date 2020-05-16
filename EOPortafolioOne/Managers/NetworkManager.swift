@@ -14,7 +14,7 @@ class NetworkManager {
     static let shared   = NetworkManager()
     init(){}
     
-    private let baseURL = "https://api.openweathermap.org/data/2.5/weather?&appid=0ac83c5b6ba194a4fdb81d25ef69dc27&units=metric"
+    private let baseURL = "https://api.openweathermap.org/data/2.5/weather?&appid=0ac83c5b6ba194a4fdb81d25ef69dc27&units=imperial"
     
     
     func getWeatherByCity(for city: String, completed: @escaping (Result<WeatherModel, BoltError>) -> Void) {
@@ -47,9 +47,10 @@ class NetworkManager {
                 let decoder = JSONDecoder()
                 let decodedData = try decoder.decode(WeatherData.self, from: data)
                 
-                let id          = decodedData.weather[0].id
+                let conditionId = decodedData.weather[0].id
                 let description = decodedData.weather[0].description
                 let name        = decodedData.name
+                let cityId      = decodedData.id
                 let temp        = decodedData.main.temp
                 let feels       = decodedData.main.feels_like
                 let min         = decodedData.main.temp_min
@@ -59,9 +60,10 @@ class NetworkManager {
                 let timezone    = decodedData.timezone
                 
                 let weather = WeatherModel(
-                    conditionId     : id,
+                    conditionId     : conditionId,
                     description     : description,
                     cityName        : name,
+                    cityId          : cityId,
                     temperature     : temp,
                     feels           : feels,
                     min             : min,
@@ -71,6 +73,7 @@ class NetworkManager {
                     timezone        : timezone
                 )
                 completed(.success(weather))
+                 
             } catch {
                 completed(.failure(.invalidData))
             }
@@ -112,9 +115,10 @@ class NetworkManager {
                 let decodedData                 = try decoder.decode(WeatherData.self, from: data)
                 decoder.dateDecodingStrategy    = .secondsSince1970
                 
-                let id          = decodedData.weather[0].id
+                let conditionId = decodedData.weather[0].id
                 let description = decodedData.weather[0].description
                 let name        = decodedData.name
+                let cityId      = decodedData.id
                 let temp        = decodedData.main.temp
                 let feels       = decodedData.main.feels_like
                 let min         = decodedData.main.temp_min
@@ -124,9 +128,10 @@ class NetworkManager {
                 let timezone    = decodedData.timezone
                 
                 let weather = WeatherModel(
-                    conditionId     : id,
+                    conditionId     : conditionId,
                     description     : description,
                     cityName        : name,
+                    cityId          : cityId,
                     temperature     : temp,
                     feels           : feels,
                     min             : min,
@@ -137,12 +142,57 @@ class NetworkManager {
                     )
                 
                 completed(.success(weather))
+               
             } catch {
                 completed(.failure(.invalidData))
             }
         }
         task.resume()
     }
+    
+    
+    func getCityInfo(for city:String, completed: @escaping (Result<City, BoltError>) -> Void){
+        let endPoint = "\(baseURL)&q=\(city)"
+        print(endPoint)
+        guard let url = URL(string: endPoint) else{
+            completed(.failure(.invalidCityName))
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let _ = error {
+                completed(.failure(.unableToComplete))
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode ==  200 else {
+                completed(.failure(.invalidResponse))
+                return
+            }
+            
+            guard let data = data else {
+                completed(.failure(.invalidData))
+                return
+            }
+            
+            do{
+                let decoder         = JSONDecoder()
+                let decodedData     = try decoder.decode(WeatherData.self, from: data)
+                
+                let cityName        = decodedData.name
+                let cityId          = decodedData.id
+                
+                let city = City(name: cityName, cityId: cityId)
+                
+                completed(.success(city))
+                print("persistentm \(city)")
+            }catch{
+                completed(.failure(.invalidData))
+            }
+        }
+        task.resume()
+    }
+    
     
 }
 

@@ -81,6 +81,7 @@ class SearchVC: UIViewController {
         cityVC.city = cityNoSpace.replacingOccurrences(of: " ", with: "+")
         }
         cityVC.title            = cityTextField.text?.capitalized
+        cityTextField.text      = ""
         navigationController?.pushViewController(cityVC, animated: true)
     }
     
