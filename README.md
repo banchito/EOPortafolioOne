@@ -27,6 +27,8 @@ Special thanks to London App Brewery [www.appbrewery.co](https://www.appbrewery.
   <img src="Documentation/BoltResults.png" width="250">
   <img src="Documentation/BoltFavorites.png" width="250">
   <img src="Documentation/BoltCustomAlert.png" width="250">
+  <img src="Documentation/DarkResults.png" width="250">
+  <img src="Documentation/DarkHomeScreen.png" width="250">
 </p>
 
 
