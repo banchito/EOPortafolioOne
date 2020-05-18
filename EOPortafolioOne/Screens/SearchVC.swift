@@ -99,6 +99,7 @@ class SearchVC: UIViewController {
         ])
     }
     
+    
     func configureGeoLocalizationButton(){
         view.addSubview(gpsButton)
         gpsButton.addTarget(self, action: #selector(pushToCityVC), for: .touchUpInside)

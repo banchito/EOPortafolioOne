@@ -33,7 +33,7 @@ enum sfSymbols: String{
     case sunset             = "sunset"
 }
 
-enum ReusableCell: String{
+enum ReusableCell: String {
     case favoritesCitiesCell    = "favoriteCity"
 }
 

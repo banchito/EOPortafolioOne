@@ -34,8 +34,9 @@ class CityVC: UIViewController {
     
     
     func getWeatherBy(latitude: CLLocationDegrees, longitude: CLLocationDegrees){
-        NetworkManager.shared.getWeatherBylocation(latitude: latitude, longitude: longitude) {result in
-            
+        NetworkManager.shared.getWeatherBylocation(latitude: latitude, longitude: longitude) { [weak self] result in
+            guard let self = self else {return}
+             
             switch result {
                 
             case .success(let weather):
@@ -46,7 +47,7 @@ class CityVC: UIViewController {
                     self.add(childVC: BoltMinMaxVC(weather: weather), to: self.itemViewOne)
                     
                 }
-                print(weather)
+               
             case .failure(let error):
                 self.presentBoltAlertOnMainThread(title: "Oups", message: error.rawValue, buttonTitle: "Ok")
             }
@@ -56,9 +57,11 @@ class CityVC: UIViewController {
     
     func getWeatherWith(city: String) {
         
-        NetworkManager.shared.getWeatherByCity(for: city) { result in
+        NetworkManager.shared.getWeatherByCity(for: city) { [weak self] result in
+            guard let self = self else {return}
+            
             switch result {
-                
+               
             case .success(let weather):
                 
                 DispatchQueue.main.async {
@@ -67,7 +70,7 @@ class CityVC: UIViewController {
                     self.add(childVC: BoltMinMaxVC(weather: weather), to: self.itemViewOne)
                    
                 }
-                print(weather)
+               
             case .failure(let error):
                 self.presentBoltAlertOnMainThread(title: "Oups", message: error.rawValue, buttonTitle: "Ok")
             }
