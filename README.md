@@ -22,15 +22,6 @@ BOLT is an iOS weather app that retrieves the temperature and conditions of eith
 Special thanks to London App Brewery [www.appbrewery.co](https://www.appbrewery.co/) and Sean Allen [seanallen.co](https://seanallen.co/) for their amazing iOS courses. This portfolio puts in practice some of their teachings. 
 
 -----------------------------------------
-<img src="Documentation/BoltHomeScreen.png" width="250">
-![Bolt Home Screen](Documentation/BoltHomeScreen.png)
+<img src="Documentation/BoltHomeScreen.png" width="250"> <img src="Documentation/BoltResults.png" width="250"><img src="Documentation/BoltFavorites.png" width="250"><img src="Documentation/BoltCustomAlert.png" width="250">
 
-<img src="Documentation/BoltResults.png" width="250">
-![Bolt Results](Documentation/BoltResults.png)
-
-<img src="Documentation/BoltFavorites.png" width="250">
-![Bolt Favorites](Documentation/BoltFavorites.png)
-
-<img src="Documentation/BoltCustomAlert.png" width="250">
-![Bolt Alert](Documentation/BoltCustomAlert.png)
 
