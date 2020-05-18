@@ -23,12 +23,12 @@ Special thanks to London App Brewery [www.appbrewery.co](https://www.appbrewery.
 
 -----------------------------------------
 <p float="middle">
-  <img src="Documentation/BoltHomeScreen.png" width="250"> 
-  <img src="Documentation/BoltResults.png" width="250">
-  <img src="Documentation/BoltFavorites.png" width="250">
-  <img src="Documentation/BoltCustomAlert.png" width="250">
-  <img src="Documentation/DarkResults.png" width="250">
-  <img src="Documentation/DarkHomeScreen.png" width="250">
+  <img src="Documentation/BoltHomeScreen.png" width="260"> 
+  <img src="Documentation/BoltResults.png" width="260">
+  <img src="Documentation/BoltFavorites.png" width="260">
+  <img src="Documentation/BoltCustomAlert.png" width="260">
+  <img src="Documentation/DarkResults.png" width="260">
+  <img src="Documentation/DarkHomeScreen.png" width="260">
 </p>
 
 
